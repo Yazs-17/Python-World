@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}聊天机器人{% endblock %}
+
+{% block page_content %}
+
+<script language="javascript">
+var i = 0; //可以不要
+window.onload = function(){
+    var s = setInterval("sc()", 100);
+}
+function sc(){
+    var div = document.getElementById("div1");
+    //div.innerText += "\n" + (i++).toString(); //可以不要
+    div.scrollTop = div.scrollHeight;
+}
+</script>
+
+<div id="div1" style="border:1px black solid;width:500;height:200px;overflow-y:auto;">
+{{tdstr|safe}}
+</div>
+
+<div class="page-header">
+    <h1><img src="static/robot.png" />：{% if name %}{{ name }}{% else %}请说话...{% endif %}</h1>
+</div>
+{{ wtf.quick_form(form) }}
+{% endblock %}
